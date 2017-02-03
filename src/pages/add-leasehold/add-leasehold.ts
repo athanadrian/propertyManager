@@ -58,7 +58,6 @@ export class AddLeaseholdPage {
       value.isRented = false;
       this.dataService.addLeasehold(propertyId, value)
         .then(() => {
-          //this.dataService.addLeaseholdToProperty(propertyId, value);
           this.navController.pop();
         }, (error) => {
           console.log(error);

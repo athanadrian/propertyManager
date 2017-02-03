@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Payment, Property, Leasehold, Renter, Contract } from '../models/models';
 
+import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class DataService {
 
@@ -30,6 +32,18 @@ export class DataService {
         this.contractList = af.database.list(`/userProfile/${auth.uid}/contractList/`);
         this.userId = auth.uid;
       }
+    });
+  }
+
+  push(path: string, data: any): Observable<any> {
+    return Observable.create(observer => {
+      this.af.database.list(path).push(data).then(firebaseNewData => {
+        // Return the uid created
+        let newData: any = firebaseNewData;
+        observer.next(newData.path.o[newData.path.o.length - 1]);
+      }, error => {
+        observer.error(error);
+      });
     });
   }
 

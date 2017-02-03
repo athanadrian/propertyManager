@@ -10,10 +10,12 @@ export class Payment {
 }
 
 export class Property {
+    $key?:string;
     title: string;
     type: string;
     address: string;
     totalLeaseholds: number;
+    leaseholds;
     marker?: {
         lat: number,
         lng: number,

@@ -21,6 +21,9 @@
             <h2>Title: {{property?.title}}</h2>
             <h3>Type: <strong> {{property?.type}}</strong></h3>
             <ion-badge item-right color="secondary">Leaseholds: {{property?.totalLeaseholds}}</ion-badge>
+            <!--<ion-badge item-right color="secondary">Leaseholds: {{(property?.leaseholds|async).length}}</ion-badge>-->
+            <!--<ion-badge *ngFor="let leasehold of property.leaseholds | async" item-right color="secondary">{{leasehold.size}}</ion-badge>-->
+            <ion-badge *ngFor="let leasehold of property.leaseholds | async" item-right [style.background-color]="!leasehold.isRented ? 'green' : 'red'">{{leasehold.size}}</ion-badge>
         </ion-item>
     </ion-list>
 </ion-content>

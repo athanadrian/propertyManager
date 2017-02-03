@@ -40,6 +40,7 @@ export class CreatePropertyPage {
       value.title = this.newPropertyForm.value.title;
       value.type = this.newPropertyForm.value.type;
       value.address = this.newPropertyForm.value.address;
+      value.totalLeaseholds = 0;
       this.dataService.createProperty(value)
         .then(() => {
           this.navController.pop();
